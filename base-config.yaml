@@ -1,0 +1,10 @@
+# Hostname header RapidAPI expects
+x-rapidapi-host: instagram-scraper-api2.p.rapidapi.com
+# API key for RapidAPI
+x-rapidapi-key: YOUR_KEY
+
+# local www folder maubot docker can access
+local_http_path: /data/www_public/
+
+# prefix of web url
+domain: https://SUBDOMAIN.DOMAIN.xyz/ig/
