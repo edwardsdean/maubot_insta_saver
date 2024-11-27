@@ -109,11 +109,26 @@ class InstaSaverPlugin(Plugin):
                     return None
                 try:
                     self.log.info(resp_json)
+
+                    message = ''
+
+                    try:
+                        audio_url = resp_json['data']['music_metadata']['music_info']['music_asset_info']['progressive_download_url']
+
+                        audio_path = self.config["local_http_path"] + short_code + '.mp3'
+                        link = self.config["domain"] + short_code + '.mp3'
+
+                        urllib.request.urlretrieve(audio_url, audio_path)
+
+                        message = message + link + '\n'
+                    except Exception as e:
+                        self.log.info(e)
+
                     pictures = resp_json['data']['carousel_media']
                     self.log.info(pictures)
 
                     pic_num = 1
-                    message = ''
+
                     for picture in pictures:
                         picture_url = picture['image_versions']['items'][0]['url']
                         # save to local disk
